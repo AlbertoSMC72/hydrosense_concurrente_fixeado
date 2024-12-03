@@ -1,9 +1,9 @@
 import config from "../config/config.js";
 
-export const getEngine = async (req) => {
+export const getEngine = async (id) => {
     try {
-        const result = await config.query("SELECT * FROM engines where company_ref = ?", [req.params.company_ref]);
-        return result; 
+        const result = await config.query("SELECT * FROM engines where company_ref = ?", [id]);
+        return result[0]; 
     } catch (error) {
         throw new Error(error.message);
     }

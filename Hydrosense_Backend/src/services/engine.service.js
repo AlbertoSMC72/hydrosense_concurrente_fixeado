@@ -2,9 +2,9 @@ import { postEngine, updateEngine, getEngine } from "../repositories/engines.rep
 import { validateEngine } from "../models/engines.model.js";
 
 
-export const getEngineService = async (req) => {
+export const getEngineService = async (id) => {
     try {
-        return await getEngine(req);
+        return await getEngine(id);
     } catch (error) {
         throw error;
     }

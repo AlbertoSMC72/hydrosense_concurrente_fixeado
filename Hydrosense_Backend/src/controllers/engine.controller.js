@@ -2,7 +2,8 @@ import { postEngineService, putEngineService, getEngineService } from "../servic
 
 
 export const getEngineController = async (req, res) => {
-    getEngineService(req)
+    const { id } = req.params;
+    getEngineService(id)
         .then((data) => res.status(200).json(data))
         .catch((error) => res.status(500).send(error.message));
 }
