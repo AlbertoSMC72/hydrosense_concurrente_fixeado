@@ -211,7 +211,7 @@ export default function EnhancedTable() {
     // Obtener datos iniciales
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://23.23.72.57:3000/app/user/company/1');
+        const response = await axios.get('http://localhost:3001/app/user/company/1');
         setRows(response.data.map(user => createData(user.id, user.name, user.email, user.password, user.position, user.company_ref)));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -286,7 +286,7 @@ export default function EnhancedTable() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        await axios.post('https://23.23.72.57:3000/app/user/company/1', newUser);
+        await axios.post('http://localhost:3001/app/user/company', newUser);
         setSnackbarMessage('Usuario agregado exitosamente');
         setOpenSnackbar(true);
         handleClose();

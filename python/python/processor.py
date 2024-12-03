@@ -59,7 +59,7 @@ def data_processor():
                     "engine_ref_data": 1
                 }
 
-                send_to_queue(relevant_data, 'data')  # Enviar a RabbitMQ
+                send_to_queue(relevant_data, "data")  # Enviar a RabbitMQ
                 print(f"Processed and sent: {relevant_data}")
 
             except Exception as e:
