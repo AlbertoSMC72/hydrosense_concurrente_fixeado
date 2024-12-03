@@ -194,6 +194,8 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const id_company = userData.company.id_company
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
   const [selected, setSelected] = useState([]);
@@ -201,17 +203,17 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense, setDense] = useState(false);
   const [open, setOpen] = useState(false);
-  const [newUser, setNewUser] = useState({ name: '', email: '', password: '', position: '', company_ref: '' });
+  const [newUser, setNewUser] = useState({ name: '', email: '', password: '', position: '', company_ref: userData.company.id_company });
   const [formErrors, setFormErrors] = useState({});
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [rows, setRows] = useState([]);
-
+  
   useEffect(() => {
     // Obtener datos iniciales
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/app/user/company/1');
+        const response = await axios.get('http://localhost:3001/app/user/company/' + id_company);
         setRows(response.data.map(user => createData(user.id, user.name, user.email, user.password, user.position, user.company_ref)));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -282,11 +284,11 @@ export default function EnhancedTable() {
     if (!newUser.email) errors.email = 'Correo es requerido';
     if (!newUser.password) errors.password = 'Contraseña es requerida';
     if (!newUser.position) errors.position = 'Rol es requerido';
-    if (!newUser.company_ref) errors.company_ref = 'Referencia de empresa es requerida';
+    /* if (!newUser.company_ref) errors.company_ref = 'Referencia de empresa es requerida'; */
 
     if (Object.keys(errors).length === 0) {
       try {
-        await axios.post('http://localhost:3001/app/user/company', newUser);
+        await axios.post('http://localhost:3001/app/user/', newUser);
         setSnackbarMessage('Usuario agregado exitosamente');
         setOpenSnackbar(true);
         handleClose();
@@ -426,7 +428,7 @@ export default function EnhancedTable() {
             error={!!formErrors.position}
             helperText={formErrors.position}
           />
-          <TextField
+          {/* <TextField
             margin="dense"
             name="company_ref"
             label="Referencia de Empresa"
@@ -437,7 +439,7 @@ export default function EnhancedTable() {
             onChange={handleChange}
             error={!!formErrors.company_ref}
             helperText={formErrors.company_ref}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
