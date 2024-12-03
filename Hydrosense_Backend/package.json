@@ -1,0 +1,26 @@
+{
+    "name": "backend_atentificador_hydrosense",
+    "version": "1.0.0",
+    "description": "Backend para una aplicación web",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "start": "nodemon ./app.js"
+    },
+    "dependencies": {
+        "api": "^6.1.1",
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.10.2",
+        "zod": "^3.23.8"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.4"
+    }
+}
