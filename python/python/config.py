@@ -4,7 +4,7 @@ BAUD_RATE = 115200
 
 # Configuración de RabbitMQ
 AMQP_OPTIONS = {
-    'hostname': '3.86.241.67',
+    'hostname': '54.90.211.83',
     'port': 5672,
     'username': 'guest',
     'password': 'guest'
